@@ -5,7 +5,7 @@
 
 **Settings Page with Intro greeting**
 
-- [x] Greeting the user on first visit, asking them to choose their favorites
+- [] Greeting the user on first visit, asking them to choose their favorites
 
 -[]Providing a default 5 coins as favorites & a complete list of all coins
 
