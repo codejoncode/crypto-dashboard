@@ -1,8 +1,7 @@
 # crypto-dashboard
 
 
-**Automative Tests**
-I have plenty of projects where I display my frontend and backend skills and different technologies.  I have been taught unit testing but I have yet to implement it on a project (solo). For this project, I will force myself to create tests slowing down on implementation so I can display this to potential jobs as I see it's on the list of skills for most companies. 
+
 
 **Settings Page with Intro greeting**
 
