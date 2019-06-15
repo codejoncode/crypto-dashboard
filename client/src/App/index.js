@@ -10,7 +10,6 @@ class App extends Component {
     return (
       <div className="App">
         <WelcomeMessage name = "Cyrpto"/>
-        <MyButton>Hello</MyButton>
       </div>
     );
   }
