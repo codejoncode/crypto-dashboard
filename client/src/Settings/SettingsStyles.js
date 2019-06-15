@@ -1,11 +1,15 @@
-
-
 import styled from 'styled-components';
+import { fontSize1, greenBoxShadow, color3} from '../Shared/SharedStyles';
 
 export const ButtonConfirm = styled.div`
   margin: 20px;
-  color: green;
+  color: ${color3};
+  ${fontSize1}
+  padding: 5px;
   cursor: pointer;
+  &:hover {
+      ${greenBoxShadow}
+  }
 `;
 
 export const CenterDiv = styled.div`
@@ -15,6 +19,7 @@ export const CenterDiv = styled.div`
 
 export const StyledCoinGrid = styled.div`
   display: grid; 
-  grid-template-columns: repeat(5, 1fr)
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap : 15px; 
 `;
 
