@@ -3,15 +3,17 @@ import './App.css';
 import WelcomeMessage from './WelcomeMessage';
 import AppLayout from '../App/AppLayout';
 import NavBar from './NavBar';
-
+import AppProvider from './AppProvider';
 
 
 class App extends Component {
   render() {
     return (
       <AppLayout>
-        <NavBar />
-        <WelcomeMessage name = "Cyrpto"/>
+        <AppProvider>
+          <NavBar />
+          <WelcomeMessage name = "Cyrpto"/>
+        </AppProvider>
       </AppLayout>
     );
   }
