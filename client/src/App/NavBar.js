@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Button, Logo } from './NavStyles';
+
 
 const Nav = styled.div`
   display: grid; 
@@ -8,11 +10,11 @@ const Nav = styled.div`
 
 export default () => {
     return (<Nav>
-
-        <div>Crypto</div>
+        
+        <Logo>Crypto</Logo>
         {/* for auto  */}
         <div></div> 
-        <div>Dashboard</div>
-        <div>Settings</div>
+        <Button active name = "dashboard" />
+        <Button name = "settings" />
     </Nav>)
 }
