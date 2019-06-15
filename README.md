@@ -40,3 +40,17 @@
 **Themes**
 
 - [ ] Easily configure the app’s theme to be dark or light
+
+**Technologies Used in this application** 
+
+- [ ] React
+- [ ] Styled-components
+- [ ] CSS Grid
+- [ ] HighCharts
+- [ ] Crypto Compare API
+- [ ] Async/await
+- [ ] Fuzzy Search
+- [ ] Loadash
+- [ ] Webkit Inspector
+- [ ] localStorage
+- [ ] Google Fonts
