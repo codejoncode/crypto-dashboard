@@ -4,7 +4,7 @@ import AppLayout from '../App/AppLayout';
 import NavBar from './NavBar';
 import AppProvider from './AppProvider';
 import Settings from '../Settings';
-
+import Content from '../Shared/Content';
 
 
 class App extends Component {
@@ -13,7 +13,9 @@ class App extends Component {
       <AppLayout>
         <AppProvider>
           <NavBar />
-          <Settings />
+          <Content>
+            <Settings />
+          </Content>
         </AppProvider>
       </AppLayout>
     );

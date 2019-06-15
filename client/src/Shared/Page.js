@@ -3,14 +3,14 @@ import { AppContext } from "../App/AppProvider";
 
 const Page = ({ name, children }) => {
   return (
-    <AppContext>
+    <AppContext.Consumer>
       {({ page }) => {
         if (page !== name) {
           return null;
         }
         return <div>{children}</div>;
       }}
-    </AppContext>
+    </AppContext.Consumer>
   );
 };
 
