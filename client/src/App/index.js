@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
-import WelcomeMessage from './WelcomeMessage';
 import AppLayout from '../App/AppLayout';
 import NavBar from './NavBar';
 import AppProvider from './AppProvider';
+import Settings from '../Settings';
+
 
 
 class App extends Component {
@@ -12,7 +13,7 @@ class App extends Component {
       <AppLayout>
         <AppProvider>
           <NavBar />
-          <WelcomeMessage name = "Cyrpto"/>
+          <Settings />
         </AppProvider>
       </AppLayout>
     );

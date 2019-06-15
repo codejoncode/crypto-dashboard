@@ -7,7 +7,10 @@ class AppProvider extends Component {
     super(props);
     this.state = {
       page: "dashboard",
-      setPage: this.setPage
+      ...this.savedSettings(), 
+      setPage: this.setPage,
+      confirmFavorites: this.confirmFavorites,
+      siteName : "CrytoDash"
     };
   }
   /* without the constructor i can not set the state to methods apart of the class. Without the constructor it will show up as undefined */
@@ -16,6 +19,24 @@ class AppProvider extends Component {
   //     setPage: this.setPage
   // }
   setPage = page => this.setState({ page });
+
+  savedSettings = () => {
+    let cryptoDashboardData = JSON.parse(localStorage.getItem('cryptoDash'));
+    if(!cryptoDashboardData){
+        return { page: 'settings', firstVisit: true}
+    }
+    return {}; 
+  }
+
+  confirmFavorites = () => {
+    this.setState({
+      firstVisit: false, 
+      page: 'dashboard'
+    });
+    localStorage.setItem('cryptoDash', JSON.stringify({
+      test: 'hello'
+    }));
+  }
 
   render() {
     return (
