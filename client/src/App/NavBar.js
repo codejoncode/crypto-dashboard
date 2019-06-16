@@ -5,7 +5,8 @@ import { Button, Logo } from './NavStyles';
 
 const Nav = styled.div`
   display: grid; 
-  grid-template-columns: 180px auto 100px 100px; 
+  margin-bottom: 40px;
+  grid-template-columns: 140px auto 100px 100px;
 `;
 
 class NavBar extends Component {
