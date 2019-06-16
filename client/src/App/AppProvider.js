@@ -17,7 +17,9 @@ class AppProvider extends Component {
       addCoin: this.addCoin,
       removeCoin: this.removeCoin,
       isInFavorites: this.isInFavorites,
-      firstVisit : true
+      firstVisit : true,
+      setFilteredCoins: this.setFilteredCoins,
+      
     };
   }
   /* without the constructor i can not set the state to methods apart of the class. Without the constructor it will show up as undefined */
@@ -80,6 +82,10 @@ class AppProvider extends Component {
   };
   isInFavorites = key => this.state.favorites.includes(key);
   // loadash way  _.includes(this.state.favorites, key) 
+
+  setFilteredCoins = (filteredCoins) => {
+    this.setState({filteredCoins})
+  }
 
   render() {
     return (

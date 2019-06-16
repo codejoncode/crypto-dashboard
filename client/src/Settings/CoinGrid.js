@@ -3,16 +3,22 @@ import { AppContext } from "../App/AppProvider";
 import { StyledCoinGrid,  } from "./SettingsStyles";
 import Coin from "./Coin";
 
-const getCoins = (coinList, topSection, favorites) => {
-  return topSection ? favorites : Object.keys(coinList).slice(0, 100);
+const getFilteredCoins = (coinList, filteredCoins) => {
+    /*Returns filtered coins if they exist or it returns the first 100 keys of the coinList */
+  return (filteredCoins && Object.keys(filteredCoins)) || 
+    Object.keys(coinList).slice(0, 100)
+}
+
+const getCoins = (coinList, topSection, favorites, filteredCoins) => {
+  return topSection ? favorites : getFilteredCoins(coinList, filteredCoins);
 };
 
 const CoinGrid = ({ topSection }) => {
   return (
     <AppContext.Consumer>
-      {({ coinList, favorites }) => (
+      {({ coinList, favorites, filteredCoins }) => (
         <StyledCoinGrid>
-          {getCoins(coinList, topSection, favorites).map((coinKey, index) => (
+          {getCoins(coinList, topSection, favorites, filteredCoins).map((coinKey, index) => (
             <Coin topSection={topSection} key={index} coinKey={coinKey} />
           ))}
         </StyledCoinGrid>
