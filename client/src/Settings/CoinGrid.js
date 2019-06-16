@@ -4,15 +4,15 @@ import { StyledCoinGrid, CenterDiv } from './SettingsStyles';
 import { TitleSelected } from '../Shared/Title';
 import Coin from './Coin';
 
-const getCoins = (coinList) => {
-    return Object.keys(coinList).slice(0, 100);
+const getCoins = (coinList, topSection) => {
+    return Object.keys(coinList).slice(0, topSection ? 10 : 100);
 }
 
-const CoinGrid = () => {
+const CoinGrid = ({topSection}) => {
     return (
         <AppContext.Consumer>
             {({coinList}) => <StyledCoinGrid>
-                {getCoins(coinList).map((coinKey, index) => <Coin key ={index}  coinKey = {coinKey} />)}
+                {getCoins(coinList, topSection).map((coinKey, index) => <Coin topSection = {topSection} key ={index}  coinKey = {coinKey} />)}
             </StyledCoinGrid>}
             
         </AppContext.Consumer>

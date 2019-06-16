@@ -9,6 +9,7 @@ const Settings = () => {
     return (
         <Page name ="settings">
             <WelcomeMessage name = "crypto"/>
+            <CoinGrid topSection />
             <ConfirmationButton />
             <CoinGrid />
         </Page>

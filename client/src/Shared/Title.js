@@ -16,3 +16,15 @@ export const TitleSelected = styled(Title)`
        ${greenBoxShadow}
    }
 `;
+//TitleSelected
+export const Deleted = styled(Title)`
+  &:hover {
+      cursor: pointer;
+      ${redBoxShadow}
+  }
+`;
+
+export const Disabled = styled(Title)`
+  pointer-events: none;
+  opacity: 0.4;
+`;
