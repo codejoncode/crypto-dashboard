@@ -3,6 +3,7 @@ import WelcomeMessage from './WelcomeMessage';
 import ConfirmationButton from './ConfirmationButton';
 import Page from '../Shared/Page';
 import CoinGrid from './CoinGrid';
+import Searching from './Searching';
 
 
 const Settings = () => {
@@ -11,6 +12,7 @@ const Settings = () => {
             <WelcomeMessage name = "crypto"/>
             <CoinGrid topSection />
             <ConfirmationButton />
+            <Searching />
             <CoinGrid />
         </Page>
     )
