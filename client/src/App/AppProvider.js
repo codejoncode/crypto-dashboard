@@ -17,9 +17,10 @@ class AppProvider extends Component {
       addCoin: this.addCoin,
       removeCoin: this.removeCoin,
       isInFavorites: this.isInFavorites,
-      firstVisit : true,
+    //   firstVisit : true,
       setFilteredCoins: this.setFilteredCoins,
-      
+      currencyType : 'USD'
+
     };
   }
   /* without the constructor i can not set the state to methods apart of the class. Without the constructor it will show up as undefined */
@@ -30,6 +31,7 @@ class AppProvider extends Component {
 
   componentDidMount = () => {
     this.fetchCoins();
+    this.fetchPrices();
     this.savedSettings();
   };
 
@@ -54,6 +56,8 @@ class AppProvider extends Component {
     this.setState({
       firstVisit: false,
       page: "dashboard"
+    }, () => {
+        this.fetchPrices(); 
     });
     localStorage.setItem(
       "cryptoDash",
@@ -62,6 +66,26 @@ class AppProvider extends Component {
       })
     );
   };
+
+  fetchPrices = async () => {
+      if(this.state.firstVisit) return; 
+      let prices = await this.prices(); 
+      this.setState({prices})
+  }
+
+  prices = async () => {
+    let returnData = [];
+    for (let i = 0; i < this.state.favorites.length; i++){
+       try {
+           /* add an option to allow a user to select the currency maybe from a drop down then modify this part here.  */
+         let priceData = await cc.priceFull(this.state.favorites[i], this.state.currencyType);
+         returnData.push(priceData); 
+       } catch (error){
+        console.warn('Fetch price error: ', error);
+       }
+    }
+    return returnData; 
+  }
 
   addCoin = key => {
     let favorites = [...this.state.favorites];
