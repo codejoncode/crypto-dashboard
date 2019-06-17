@@ -1,5 +1,5 @@
-import styled , {css} from 'styled-components';
-import {TitleSelected} from "../Shared/Title";
+import styled from 'styled-components';
+
 
 export const Grid = styled.div`
   display: grid; 

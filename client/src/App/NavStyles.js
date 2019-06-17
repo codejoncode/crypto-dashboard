@@ -13,6 +13,9 @@ export const ButtonElement = styled.div`
     css`
       text-shadow: 0px 0px 60px #03ff03;
     `}
+    ${props => props.hidden && css `
+      display: none; 
+    `}
 `;
 
 export const capitializeString = str => {
@@ -28,8 +31,8 @@ export const Button = ({ name, active }) => {
   return (
     <AppContext.Consumer>
       {/* Pulling page from the state */}
-      {({ page, setPage }) => (
-        <ButtonElement onClick={() => setPage(name)} active={page === name}>
+      {({ firstVisit, page, setPage }) => (
+        <ButtonElement onClick={() => setPage(name)} active={page === name} hidden = {firstVisit && page === 'dashboard'}>
           {capitializeString(name)}
         </ButtonElement>
       )}

@@ -9,13 +9,16 @@ ReactHighcharts.Highcharts.setOptions(ChartsTheme);
 export default () => {
   return (
     <AppContext.Consumer>
-      {({ historical }) => {
+      {({ historical, firstVisit }) => {
         if (historical) {
           return (
             <Title>
               <ReactHighcharts config={highChartsConfig(historical)} />
             </Title>
           );
+        }
+        if (!firstVisit){
+          return <div>Please go to settings and confirm your favorites</div>
         }
 
         return <div>Loading Historical Data</div>;

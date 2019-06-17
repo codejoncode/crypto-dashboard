@@ -6,7 +6,6 @@ export default (historical) => {
   // subtitle: {
   //   text: 'Source: thesolarfoundation.com'
   // },
-  console.log(historical)
   return {
     title: {
       text: ""
