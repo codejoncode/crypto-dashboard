@@ -19,7 +19,8 @@ class AppProvider extends Component {
       isInFavorites: this.isInFavorites,
     //   firstVisit : true,
       setFilteredCoins: this.setFilteredCoins,
-      currencyType : 'USD'
+      currencyType : 'USD',
+      setCurrentFavorite: this.setCurrentFavorite,
 
     };
   }
@@ -29,10 +30,10 @@ class AppProvider extends Component {
   //     setPage: this.setPage
   // }
 
-  componentDidMount = () => {
-    this.fetchCoins();
-    this.fetchPrices();
-    this.savedSettings();
+  componentDidMount = async () => {
+    await this.savedSettings();
+    await this.fetchCoins();
+    await this.fetchPrices();
   };
 
   fetchCoins = async () => {
@@ -47,22 +48,35 @@ class AppProvider extends Component {
     if (!cryptoDashboardData) {
       return { page: "settings", firstVisit: true };
     }
-    let { favorites } = cryptoDashboardData;
-    this.setState({ favorites, firstVisit: false })
-    return {favorites};
+    let { favorites, currentFavorite } = cryptoDashboardData;
+    this.setState({ favorites, firstVisit: false, currentFavorite })
+    return {favorites, currentFavorite};
   };
 
+  setCurrentFavorite = (sym) => {
+    localStorage.setItem('cryptoDash', JSON.stringify({
+      ...JSON.parse(localStorage.getItem('cryptoDash')),
+      currentFavorite : sym 
+    }))
+    this.setState({
+      currentFavorite: sym
+    });
+  }
+
   confirmFavorites = () => {
+    let currentFavorite = this.state.favorites[0];
     this.setState({
       firstVisit: false,
-      page: "dashboard"
+      page: "dashboard",
+      currentFavorite,
     }, () => {
         this.fetchPrices(); 
     });
     localStorage.setItem(
       "cryptoDash",
       JSON.stringify({
-        favorites: this.state.favorites
+        favorites: this.state.favorites,
+        currentFavorite
       })
     );
   };

@@ -1,9 +1,10 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { TitleSelected } from "../Shared/Title";
-import { fontSize3, fontSizeBig } from "../Shared/SharedStyles";
+import { fontSize3, fontSizeBig, greenBoxShadow } from "../Shared/SharedStyles";
 import { Header } from "../Settings/CoinHeader";
 import { JustifyRight, JustifyLeft } from "./DashboardStyles";
+import { AppContext } from "../App/AppProvider";
 
 const PriceTitleStyled = styled(TitleSelected)`
   ${props =>
@@ -12,8 +13,14 @@ const PriceTitleStyled = styled(TitleSelected)`
       display: grid;
       ${fontSize3};
       grid-template-columns: repeat(3, 1fr);
-      grid-gap : 5px;
+      grid-gap: 5px;
       justify-items: right;
+    `}
+  ${props =>
+    props.currentFavorite &&
+    css`
+      ${greenBoxShadow};
+      pointer-events: none;
     `}
 `;
 
@@ -43,28 +50,27 @@ const ChangePercent = ({ data }) => {
   return <div />;
 };
 
-const PriceTitleCompact = ({sym, data, compact}) => {
-    if (data) {
-        return (
-          <PriceTitleStyled compact>
-            
-              <JustifyLeft> {sym} </JustifyLeft>
-              <ChangePercent data = {data}/>
-           
-            <div>${numberFormat(data.PRICE)}</div>
-          </PriceTitleStyled>
-        );
-      }
-      return <div />;
-}
-
-const PriceTitle = ({ sym, data }) => {
+const PriceTitleCompact = ({ sym, data, currentFavorite, setCurrentFavorite}) => {
   if (data) {
     return (
-      <PriceTitleStyled>
+      <PriceTitleStyled onClick = {setCurrentFavorite} compact curentFavorite={currentFavorite}>
+        <JustifyLeft> {sym} </JustifyLeft>
+        <ChangePercent data={data} />
+
+        <div>${numberFormat(data.PRICE)}</div>
+      </PriceTitleStyled>
+    );
+  }
+  return <div />;
+};
+
+const PriceTitle = ({ sym, data, currentFavorite, setCurrentFavorite }) => {
+  if (data) {
+    return (
+      <PriceTitleStyled onClick = {setCurrentFavorite} currentFavorite={currentFavorite}>
         <Header>
           <div> {sym} </div>
-          <ChangePercent data = {data}/>
+          <ChangePercent data={data} />
         </Header>
         <TickerPrice>${numberFormat(data.PRICE)}</TickerPrice>
       </PriceTitleStyled>
@@ -83,7 +89,18 @@ export default ({ price, index }) => {
   let TitleClass = index < 5 ? PriceTitle : PriceTitleCompact;
 
   if (data) {
-    return <TitleClass sym={sym} data={data} />;
+    return (
+      <AppContext.Consumer>
+        {({ currentFavorite, setCurrentFavorite }) => (
+          <TitleClass
+            sym={sym}
+            data={data}
+            currentFavorite={currentFavorite === sym}
+            setCurrentFavorite={() => setCurrentFavorite(sym)}
+          />
+        )}
+      </AppContext.Consumer>
+    );
   }
 
   return <div />;
