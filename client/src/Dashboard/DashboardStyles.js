@@ -15,3 +15,15 @@ export const JustifyRight = styled.div`
 export const JustifyLeft = styled.div`
   justify-self: left;
 `;
+
+export const ChartGrid = styled.div`
+  display:grid;
+  margin-top: 20px;
+  grid-gap: 15px; 
+  grid-template-columns: 1fr 3fr; 
+
+`;
+
+export const SpotLightName = styled.h2`
+  text-align: center; 
+`;

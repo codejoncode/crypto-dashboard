@@ -1,13 +1,13 @@
 import React from "react";
+import { CoinImage } from "./SharedStyles";
 
-const CoinImage = ({ coin, style }) => {
+export default ({ coin, spotlight }) => {
   return (
-    <img
+    <CoinImage
+      spotlight = {spotlight}
       alt={coin.CoinSymbol}
-      style={style || { height: "50px" }}
       src={`http://cryptocompare.com/${coin.ImageUrl}`}
     />
   );
 };
 
-export default CoinImage;
