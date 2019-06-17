@@ -12,6 +12,7 @@ class AppProvider extends Component {
     this.state = {
       page: "dashboard",
       favorites: ["BTC", "ETH", "XMR", "DOGE"],
+      timeInterval : "months", 
       //   ...this.savedSettings(),
       setPage: this.setPage,
       confirmFavorites: this.confirmFavorites,
@@ -22,7 +23,8 @@ class AppProvider extends Component {
       //   firstVisit : true,
       setFilteredCoins: this.setFilteredCoins,
       currencyType: "USD",
-      setCurrentFavorite: this.setCurrentFavorite
+      setCurrentFavorite: this.setCurrentFavorite, 
+      changeChartSelect: this.changeChartSelect,
     };
   }
   /* without the constructor i can not set the state to methods apart of the class. Without the constructor it will show up as undefined */
@@ -45,7 +47,7 @@ class AppProvider extends Component {
       {
         name: this.state.currentFavorite,
         data: results.map((ticker, index) => [
-          moment().subtract({months: TIME_UNITS - index}).valueOf(),
+          moment().subtract({[this.state.timeInterval]: TIME_UNITS - index}).valueOf(),
           ticker.USD
         ])
       }
@@ -55,13 +57,13 @@ class AppProvider extends Component {
 
   historical = () => {
     let promises = [];
-    for (let units = TIME_UNITS; units > 0; units--) {
+    for (let units = TIME_UNITS; units >=0; units--) {
       promises.push(
         cc.priceHistorical(
           this.state.currentFavorite,
           [this.state.currencyType],
           moment()
-            .subtract({ months: units })
+            .subtract({ [this.state.timeInterval]: units })
             .toDate()
         )
       );
@@ -171,6 +173,11 @@ class AppProvider extends Component {
   setFilteredCoins = filteredCoins => {
     this.setState({ filteredCoins });
   };
+
+  changeChartSelect = (value) => {
+    console.log(value); 
+    this.setState({timeInterval: value, historical : null}, this.fetchHistorical);
+  }
 
   render() {
     return (
