@@ -18,8 +18,8 @@ const CoinGrid = ({ topSection }) => {
     <AppContext.Consumer>
       {({ coinList, favorites, filteredCoins }) => (
         <StyledCoinGrid>
-          {getCoins(coinList, topSection, favorites, filteredCoins).map((coinKey, index) => (
-            <Coin topSection={topSection} key={index} coinKey={coinKey} />
+          {getCoins(coinList, topSection, favorites, filteredCoins).map((coinKey) => (
+            <Coin topSection={topSection} key={coinKey} coinKey={coinKey} />
           ))}
         </StyledCoinGrid>
       )}
