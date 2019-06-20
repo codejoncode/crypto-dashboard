@@ -18,6 +18,9 @@ class NavBar extends Component {
             <div></div> 
             <Button active name = "dashboard" />
             <Button name = "settings" />
+            <button>   
+                <a href="https://crypto-dashboard.auth0.com/login?client=ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez">Login</a>
+            </button>
         </Nav>)
 
     }
