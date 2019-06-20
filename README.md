@@ -1,6 +1,10 @@
 # crypto-dashboard
 
+#Trello Board 
 
+https://trello.com/b/0m1aEw2b/crypto-dashboard
+
+Deployed to Netlify https://crypto-dashboard-jjh.netlify.com/
 
 
 **Settings Page with Intro greeting**
