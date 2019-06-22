@@ -29,6 +29,9 @@ class AppProvider extends Component {
       setCurrentFavorite: this.setCurrentFavorite, 
       changeChartSelect: this.changeChartSelect,
       auth,
+      getProfile: this.getProfile,
+      loginUser : this.loginUser,
+
 
     };
   }
@@ -45,7 +48,21 @@ class AppProvider extends Component {
     await this.fetchHistorical();
   };
 
-  
+  getProfile = () => {
+    const nickname = this.state.auth.getProfile().nickname;
+    const email = this.state.auth.getProfile().email;
+    const picture = this.state.auth.getProfile().picture;
+    const name = this.state.auth.getProfile().name;
+
+    console.log(nickname);
+    console.log(email); 
+    localStorage.setItem("nickname", nickname);
+    localStorage.setItem("email", email); 
+  }
+
+  loginUser = () => {
+    
+  }
 
   fetchHistorical = async () => {
     if (this.state.firstVisit) return;

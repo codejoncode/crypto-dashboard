@@ -22,8 +22,11 @@ export default class Auth {
   handleAuthenticated = () => {
     console.log("handling authenticated");
     this.auth0.parseHash((err, authResults) => {
+      console.log(authResults)
+      console.log(err)
       if (authResults && authResults.accessToken && authResults.idToken) {
         //figure out if the user is still authenticated or if their token has expired.
+        console.log("authenticated successful")
         let expiresAt = JSON.stringify(
           authResults.expiresIn * 1000 + new Date().getTime()
         );
@@ -33,6 +36,7 @@ export default class Auth {
         location.hash = ""; // eslint  no restricted  needs comment on line one. 
         location.pathname = LOGIN_SUCCESS_PAGE;
       } else if (err) {
+        console.log("authenticated failed")
         location.pathname = LOGIN_FAILURE_PAGE;
         console.log(err);
       }
