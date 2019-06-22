@@ -8,12 +8,12 @@ const initialState = [];
 
 const loginUserSuccess = (state, payload) => {
   console.log(payload);
-  return;
+  return [...state, payload]
 };
 
 const loginUserFailed = (state, payload) => {
   console.log(payload);
-  return;
+  return [...state, payload];
 };
 
 export default createReducer(initialState, {

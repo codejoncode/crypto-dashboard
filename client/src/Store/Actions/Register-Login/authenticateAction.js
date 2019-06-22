@@ -9,13 +9,14 @@ import {
 const backendUrl = "http://localhost:4001/";
 
 export const registerOrLogin = body => {
-  /* No need to add to the endpoint in order to login */
-  const promise = axios.post(backendUrl, body);
+  const userEndPoint = "users";
+  const postUser = backendUrl + userEndPoint
+  const promise = axios.post(postUser, body);
   return dispatch => {
     dispatch({ type: AUTHENTICATION_ATTEMPTED });
     promise
       .then(results => {
-        dispatch({ type: AUTHENTICATION_SUCCESSFUL });
+        dispatch({ type: AUTHENTICATION_SUCCESSFUL, payload: results.data });
         //CHECK WHAT WE WOULD LIKE TO RETURN AND / DISPLAY
         toastr.success("Success", `Welcome back username`); // once I check / adjust what returns I will udpate this to the usersname in the toastr messae
       })

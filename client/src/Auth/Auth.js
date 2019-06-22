@@ -1,11 +1,14 @@
 /* eslint no-restricted-globals: 0 */
 import auth0 from "auth0-js";
 import jwtDecode from "jwt-decode";
-
+import { withRouter } from "react-router";
 const LOGIN_SUCCESS_PAGE = "/settings";
 const LOGIN_FAILURE_PAGE = "/";
 
-export default class Auth {
+ class Auth {
+   constructor(history){
+     this.history = history; 
+   }
   auth0 = new auth0.WebAuth({
     domain: "crypto-dashboard.auth0.com",
     clientID: "ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez",
@@ -34,7 +37,9 @@ export default class Auth {
         localStorage.setItem("id_token", authResults.idToken);
         localStorage.setItem("expires_at", expiresAt);
         location.hash = ""; // eslint  no restricted  needs comment on line one. 
-        location.pathname = LOGIN_SUCCESS_PAGE;
+        // location.pathname = LOGIN_SUCCESS_PAGE;
+        // this.props.history.push(LOGIN_SUCCESS_PAGE)
+        this.history.push(LOGIN_SUCCESS_PAGE)
       } else if (err) {
         console.log("authenticated failed")
         location.pathname = LOGIN_FAILURE_PAGE;
@@ -65,3 +70,5 @@ export default class Auth {
     }
   };
 }
+
+export default Auth

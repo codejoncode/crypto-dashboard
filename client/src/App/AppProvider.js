@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import moment from "moment";
 import Auth from "../Auth/Auth";
+import { registerOrLogin } from "../Store/Actions/Register-Login/authenticateAction"
 
 const cc = require("cryptocompare");
 export const AppContext = React.createContext();
@@ -9,6 +12,16 @@ export const MAX_FAVORITES = 10;
 const TIME_UNITS = 12;
 const auth = new Auth();
 
+const actions = {
+  registerOrLogin,
+}
+
+const mapState = state => {
+  console.log(state)
+  return {
+    user : state.user
+  }
+}
 class AppProvider extends Component {
   constructor(props) {
     super(props);
@@ -28,9 +41,12 @@ class AppProvider extends Component {
       currencyType: "USD",
       setCurrentFavorite: this.setCurrentFavorite, 
       changeChartSelect: this.changeChartSelect,
-      auth,
+      // auth,
+      auth : new Auth(this.props.history),
       getProfile: this.getProfile,
       loginUser : this.loginUser,
+      user: this.props.user,
+      registerOrLogin: this.props.registerOrLogin,
 
 
     };
@@ -62,13 +78,8 @@ class AppProvider extends Component {
   // log the user in after get the details of the users profile and then login the user in to the backend. 
   loginUser = async () => {
     await this.state.auth.login();
-    const username = await this.state.auth.getProfile().nickname;
-    const email = await this.state.auth.getProfile().email;
-    const picture = await this.state.auth.getProfile().picture;
-    const name = await this.state.auth.getProfile().name;
-    await console.log(username, email, picture, name);
-    // register the user using an  redux action.  
-
+   
+    
   }
 
   fetchHistorical = async () => {
@@ -213,6 +224,7 @@ class AppProvider extends Component {
   }
 
   render() {
+    console.log(this.state.user);
     return (
       <AppContext.Provider value={this.state}>
         {this.props.children}
@@ -220,4 +232,5 @@ class AppProvider extends Component {
     );
   }
 }
-export default withRouter(AppProvider);
+// export default withRouter(AppProvider);
+export default withRouter( connect(mapState, actions)(AppProvider));

@@ -10,10 +10,10 @@ const Main = () => {
   return (
     <div>
       <AppContext.Consumer>
-        {({ auth, getProfile, loginUser }) => (
+        {({ auth, getProfile, loginUser,registerOrLogin }) => (
           <Switch>
             <Route exact path="/" component={() => <LandingPage loginUser ={loginUser} />} />
-            <Route path="/settings" component={() => <Settings getProfile = {getProfile}/>} />
+            <Route path="/settings" component={() => <Settings auth = {auth} registerOrLogin = {registerOrLogin}/>} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/callback" component={() => <Callback auth = {auth}/>} />
           </Switch>
