@@ -59,9 +59,16 @@ class AppProvider extends Component {
     localStorage.setItem("nickname", nickname);
     localStorage.setItem("email", email); 
   }
+  // log the user in after get the details of the users profile and then login the user in to the backend. 
+  loginUser = async () => {
+    await this.state.auth.login();
+    const username = this.state.auth.getProfile().nickname;
+    const email = this.state.auth.getProfile().email;
+    const picture = this.state.auth.getProfile().picture;
+    const name = this.state.auth.getProfile().name;
+    console.log(username, email, picture, name);
+    // register the user using an  redux action.  
 
-  loginUser = () => {
-    
   }
 
   fetchHistorical = async () => {
