@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
 import './App.css';
 import AppLayout from '../App/AppLayout';
 import NavBar from './NavBar';
 import AppProvider from './AppProvider';
-import Settings from '../Settings';
 import Content from '../Shared/Content';
-import Dashboard from '../Dashboard';
-import LandingPage from './LandingPage';
+import Main from "./Main";
 
 
 class App extends Component {
@@ -29,11 +26,7 @@ class App extends Component {
         <AppProvider>
           <NavBar />
           <Content>
-          <Switch>
-            <Route exact path = "/" component = {LandingPage} />
-            <Route path = "/settings" component = {Settings} />
-            <Route path = "/dashboard" component = {Dashboard} />
-          </Switch>
+            <Main />
           </Content>
         </AppProvider>
       </AppLayout>

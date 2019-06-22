@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import moment from "moment";
+import Auth from "../Auth/Auth";
 
 const cc = require("cryptocompare");
 export const AppContext = React.createContext();
 export const MAX_FAVORITES = 10;
 const TIME_UNITS = 12;
+const auth = new Auth();
 
 class AppProvider extends Component {
   constructor(props) {
@@ -26,6 +28,8 @@ class AppProvider extends Component {
       currencyType: "USD",
       setCurrentFavorite: this.setCurrentFavorite, 
       changeChartSelect: this.changeChartSelect,
+      auth,
+
     };
   }
   /* without the constructor i can not set the state to methods apart of the class. Without the constructor it will show up as undefined */
@@ -41,7 +45,7 @@ class AppProvider extends Component {
     await this.fetchHistorical();
   };
 
-  //I want to make sure if the page refreshes that it will load  up the correct page current with page set to dashboard this doesn't work. 
+  
 
   fetchHistorical = async () => {
     if (this.state.firstVisit) return;
