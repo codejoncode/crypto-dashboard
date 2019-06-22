@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import moment from "moment";
 
 const cc = require("cryptocompare");
@@ -40,6 +41,8 @@ class AppProvider extends Component {
     await this.fetchHistorical();
   };
 
+  //I want to make sure if the page refreshes that it will load  up the correct page current with page set to dashboard this doesn't work. 
+
   fetchHistorical = async () => {
     if (this.state.firstVisit) return;
     let results = await this.historical();
@@ -77,7 +80,9 @@ class AppProvider extends Component {
     this.setState({ coinList });
   };
 
-  setPage = page => this.setState({ page });
+  setPage = page => {
+    this.setState({ page },this.props.history.push(page))
+  };
 
   savedSettings = () => {
     let cryptoDashboardData = JSON.parse(localStorage.getItem("cryptoDash"));
@@ -176,7 +181,6 @@ class AppProvider extends Component {
   };
 
   changeChartSelect = (value) => {
-    console.log(value); 
     this.setState({timeInterval: value, historical : null}, this.fetchHistorical);
   }
 
@@ -188,4 +192,4 @@ class AppProvider extends Component {
     );
   }
 }
-export default AppProvider;
+export default withRouter(AppProvider);

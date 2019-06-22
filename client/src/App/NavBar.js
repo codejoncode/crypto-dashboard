@@ -19,8 +19,12 @@ class NavBar extends Component {
             <div></div> 
             {/* <Button active name = "dashboard" />
             <Button name = "settings" /> */}
-            <Link to = "/dashboard">Dashboard</Link>
-            <Link to = "/settings">Settings</Link>
+            <Button name = "dashboard">
+              <Link to = "/dashboard">Dashboard</Link>
+            </Button>
+            <Button name = "settings">
+              <Link to = "/settings">Settings</Link>
+            </Button>
             <button>   
                 <a href="https://crypto-dashboard.auth0.com/login?client=ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez">Login</a>
             </button>
