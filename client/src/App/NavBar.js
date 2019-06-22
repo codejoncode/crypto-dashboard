@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 import { Button, Logo } from './NavStyles';
+import { Link } from "react-router-dom";
 
 
 const Nav = styled.div`
@@ -16,8 +17,10 @@ class NavBar extends Component {
             <Logo>Crypto</Logo>
             {/* for auto  */}
             <div></div> 
-            <Button active name = "dashboard" />
-            <Button name = "settings" />
+            {/* <Button active name = "dashboard" />
+            <Button name = "settings" /> */}
+            <Link to = "/dashboard">Dashboard</Link>
+            <Link to = "/settings">Settings</Link>
             <button>   
                 <a href="https://crypto-dashboard.auth0.com/login?client=ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez">Login</a>
             </button>
