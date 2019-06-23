@@ -67,8 +67,8 @@ class AppProvider extends Component {
   getProfile = () => {
     const nickname = this.state.auth.getProfile().nickname;
     const email = this.state.auth.getProfile().email;
-    const picture = this.state.auth.getProfile().picture;
-    const name = this.state.auth.getProfile().name;
+    // const picture = this.state.auth.getProfile().picture;
+    // const name = this.state.auth.getProfile().name;
 
     console.log(nickname);
     console.log(email); 

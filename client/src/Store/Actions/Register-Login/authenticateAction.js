@@ -8,10 +8,11 @@ import {
 
 const backendUrl = "http://localhost:4001/";
 
-export const registerOrLogin = body => {
+export const registerOrLogin = (body, token) => {
   const userEndPoint = "users";
   const postUser = backendUrl + userEndPoint
-  const promise = axios.post(postUser, body);
+  const headers = { headers: { Authorization: `Bearer ${token}` } };
+  const promise = axios.post(postUser, body, headers);
   return dispatch => {
     dispatch({ type: AUTHENTICATION_ATTEMPTED });
     promise

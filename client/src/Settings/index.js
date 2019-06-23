@@ -22,7 +22,8 @@ class Settings extends Component {
          localStorage.setItem("email", email);
          localStorage.setItem("picture", picture);
          localStorage.setItem("name", name);
-         this.props.registerOrLogin(body)
+         const token = localStorage.getItem("access_token");
+         this.props.registerOrLogin(body,token)
     }
 
     render() {
