@@ -13,6 +13,7 @@ class Settings extends Component {
         const username =  this.props.auth.getProfile().nickname;
         const email =  this.props.auth.getProfile().email;
         const picture =  this.props.auth.getProfile().picture;
+        console.log(`This is the picture ${picture}`)
         const name =  this.props.auth.getProfile().name;
         // register the user using an  redux action.  
         const body = {username, email, picture, name}
@@ -22,7 +23,6 @@ class Settings extends Component {
          localStorage.setItem("picture", picture);
          localStorage.setItem("name", name);
          this.props.registerOrLogin(body)
-        console.log(username, email, picture, name);
     }
 
     render() {

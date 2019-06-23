@@ -16,12 +16,15 @@ export const registerOrLogin = body => {
     dispatch({ type: AUTHENTICATION_ATTEMPTED });
     promise
       .then(results => {
+        console.log(results.data);
         dispatch({ type: AUTHENTICATION_SUCCESSFUL, payload: results.data });
         //CHECK WHAT WE WOULD LIKE TO RETURN AND / DISPLAY
-        toastr.success("Success", `Welcome back username`); // once I check / adjust what returns I will udpate this to the usersname in the toastr messae
+        //localstorage the users   id  will defintely need this on local storage
+        toastr.success("Success", `Welcome back ${results.data.user.username}`); // once I check / adjust what returns I will udpate this to the usersname in the toastr messae
       })
       .catch(error => {
-        dispatch({ type: AUTHENTICATION_FAILED, error });
+        dispatch({ type: AUTHENTICATION_FAILED, payload: error });
+        console.log(error)
         toastr.error("Login Failed", "We were not able to authenticate you.");
       });
   };
