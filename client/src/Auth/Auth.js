@@ -13,7 +13,8 @@ const LOGIN_FAILURE_PAGE = "/";
     domain: "crypto-dashboard.auth0.com",
     clientID: "ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez",
     redirectUrl: "http://localhost:3000/callback", // redirect after the authencation is used also added into the Auth0 applications tab and settings page section Allowed Callback URLs
-    audience: "https://crypto-dashboard.auth0.com/userinfo",
+    // audience: "https://crypto-dashboard.auth0.com/userinfo",
+    audience: "crypto-backend-api", // need to be the API's audience
     responseType: "token id_token",
     scope: "openid profile email" //profile will provide the information from the users  social account  yarn add jwt-decode --save  to decode this data from the id_token
   });
