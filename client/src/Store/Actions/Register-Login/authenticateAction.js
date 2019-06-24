@@ -20,7 +20,7 @@ export const registerOrLogin = (body, token) => {
         console.log(results.data);
         localStorage.setItem("user_id", results.data.user.id)
         localStorage.setItem("username", results.data.user.username)
-        localStorage.setItem("firstvisit", false)
+        localStorage.setItem("firstVisit", false)
         dispatch({ type: AUTHENTICATION_SUCCESSFUL, payload: results.data });
         //CHECK WHAT WE WOULD LIKE TO RETURN AND / DISPLAY
         //localstorage the users   id  will defintely need this on local storage
