@@ -20,10 +20,11 @@ export const registerOrLogin = (body, token) => {
         console.log(results.data);
         localStorage.setItem("user_id", results.data.user.id)
         localStorage.setItem("username", results.data.user.username)
-        
+        localStorage.setItem("firstvisit", false)
         dispatch({ type: AUTHENTICATION_SUCCESSFUL, payload: results.data });
         //CHECK WHAT WE WOULD LIKE TO RETURN AND / DISPLAY
         //localstorage the users   id  will defintely need this on local storage
+
         toastr.success("Success", `Welcome back ${results.data.user.username}`); // once I check / adjust what returns I will udpate this to the usersname in the toastr messae
       })
       .catch(error => {

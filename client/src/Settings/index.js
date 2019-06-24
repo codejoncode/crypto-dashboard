@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router";
 import WelcomeMessage from './WelcomeMessage';
 import ConfirmationButton from './ConfirmationButton';
 import Page from '../Shared/Page';
@@ -10,6 +11,10 @@ class Settings extends Component {
 
     componentDidMount() {
         //this.props.getProfile() // passed in from main
+        if(this.props.auth.isAuthenticated() === false){
+            /* If the user is not authenticated take them away from the settings page*/
+            this.props.history.push("/")
+        }
         const username =  this.props.auth.getProfile().nickname;
         const email =  this.props.auth.getProfile().email;
         const picture =  this.props.auth.getProfile().picture;
@@ -41,4 +46,4 @@ class Settings extends Component {
     }
 }
 
-export default Settings;
+export default withRouter(Settings);
