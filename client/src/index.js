@@ -8,6 +8,7 @@ import logger from "redux-logger";
 import ReduxToastr from "react-redux-toastr";
 import './index.css';
 import "../node_modules/react-redux-toastr/lib/css/react-redux-toastr.min.css";
+import "../node_modules/semantic-ui-css/semantic.min.css";
 import App from './App/index';
 import * as serviceWorker from './serviceWorker';
 import ScrollToTop from './Common/util/ScrollToTop';

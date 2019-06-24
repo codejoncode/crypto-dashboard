@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import LandingPage from "./LandingPage";
+import LandingPage from "./Home/LandingPage";
 import Dashboard from "../Dashboard";
 import Settings from "../Settings";
 import Callback from "../Auth/Callback";
