@@ -13,17 +13,18 @@ class Settings extends Component {
         const username =  this.props.auth.getProfile().nickname;
         const email =  this.props.auth.getProfile().email;
         const picture =  this.props.auth.getProfile().picture;
-        console.log(`This is the picture ${picture}`)
         const name =  this.props.auth.getProfile().name;
-        // register the user using an  redux action.  
+        
         const body = {username, email, picture, name}
-        //  this.state.auth.handleAuthenticated()
+        
          localStorage.setItem("username", username);
          localStorage.setItem("email", email);
          localStorage.setItem("picture", picture);
          localStorage.setItem("name", name);
          const token = localStorage.getItem("access_token");
          this.props.registerOrLogin(body,token)
+
+        
     }
 
     render() {
