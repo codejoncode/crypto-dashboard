@@ -27,9 +27,29 @@ export const updateFavorites = (body, token, id) => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: UPDATE_FAVORITES_FAILED });
+        dispatch({ type: UPDATE_FAVORITES_FAILED, payload: error });
         toastr.error("Update Failed", "Unable to update your favorites");
       });
   };
 };
 
+export const updateFav = (body, token, id) => {
+  const favEndPoint = `favs/${id}`;
+  const headers = { headers: { Authorization: `Bearer ${token}` } };
+  const putFavsEndPoint = backendUrl + favEndPoint;
+  const promise = axios.put(putFavsEndPoint, body, headers);
+  return dispatch => {
+    dispatch({type: UPDATE_FAV_ATTEMPTED})
+    promise
+      .then(results => {
+        console.log(results.data);
+        dispatch({type: UPDATE_FAV_SUCCESSFUL, payload: results.data})
+        toastr.success("Success", `You changed your fav to ${body.fav}`)
+      })
+      .catch(error => {
+        console.log(error)
+        dispatch({type: UPDATE_FAV_FAILED, payload: error})
+        toastr.error("Update Failed", "Unable to update your current favorite")
+      })
+  }
+}
