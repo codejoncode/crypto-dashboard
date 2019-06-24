@@ -146,7 +146,7 @@ class AppProvider extends Component {
         currentFavorite: sym
       })
     );
-    // this.props.updateFav();
+    this.reduxFavorites(true, sym);
     
     this.setState({
       currentFavorite: sym,
@@ -154,12 +154,13 @@ class AppProvider extends Component {
     },this.fetchHistorical);
   };
   
-  reduxFavorites = (currentFav = false) => {
+  reduxFavorites = (currentFav = false, fav = null) => {
     /**takes an optional paramater currentFav
      * If currentFav is set to true then the updateFav function will be called
      * If the currentFav is left at false  then updateFavorites will run. 
      * This function serves the purpose of getting the token and id from local storage
      * creating a body based off current fav and then running the appropriate function. 
+     * if currentFav === true then fav must also equal something other than null
      */
     const token = localStorage.getItem("access_token");
     const id = localStorage.getItem("user_id");
@@ -167,7 +168,7 @@ class AppProvider extends Component {
       const body = {favorites : this.state.favorites.join(" ")};
       this.props.updateFavorites(body, token, id)
     } else if (currentFav === true){
-      const body = {fav : this.state.currentFavorite}
+      const body = {fav}
       this.props.updateFav(body, token, id);
     }
   }
