@@ -32,7 +32,10 @@ class Settings extends Component {
     }
   }
   componentDidUpdate () {
-      
+      /*If an update is done at any point and time and the user is not authenticated get them back to the landing page for login */
+      if (this.props.auth.isAuthenticated() === false){
+        this.props.history.push("/");
+      }
   }
 
   render() {
