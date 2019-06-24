@@ -39,17 +39,17 @@ export const updateFav = (body, token, id) => {
   const putFavsEndPoint = backendUrl + favEndPoint;
   const promise = axios.put(putFavsEndPoint, body, headers);
   return dispatch => {
-    dispatch({type: UPDATE_FAV_ATTEMPTED})
+    dispatch({ type: UPDATE_FAV_ATTEMPTED });
     promise
       .then(results => {
         console.log(results.data);
-        dispatch({type: UPDATE_FAV_SUCCESSFUL, payload: results.data})
-        toastr.success("Success", `You changed your fav to ${body.fav}`)
+        dispatch({ type: UPDATE_FAV_SUCCESSFUL, payload: results.data });
+        toastr.success("Success", `You changed your fav to ${body.fav}`);
       })
       .catch(error => {
-        console.log(error)
-        dispatch({type: UPDATE_FAV_FAILED, payload: error})
-        toastr.error("Update Failed", "Unable to update your current favorite")
-      })
-  }
-}
+        console.log(error);
+        dispatch({ type: UPDATE_FAV_FAILED, payload: error });
+        toastr.error("Update Failed", "Unable to update your current favorite");
+      });
+  };
+};

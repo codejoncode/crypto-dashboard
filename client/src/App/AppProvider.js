@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import moment from "moment";
 import Auth from "../Auth/Auth";
-import { registerOrLogin } from "../Store/Actions/Register-Login/authenticateAction"
+import { registerOrLogin } from "../Store/Actions/Register-Login/authenticateAction";
+import { updateFav, updateFavorites } from "../Store/Actions/favorites/favoritesActions";
 
 const cc = require("cryptocompare");
 export const AppContext = React.createContext();
@@ -14,6 +15,8 @@ const auth = new Auth();
 
 const actions = {
   registerOrLogin,
+  updateFav,
+  updateFavorites
 }
 
 const mapState = state => {
@@ -27,7 +30,9 @@ class AppProvider extends Component {
     super(props);
     this.state = {
       page: "dashboard",
-      favorites: ["BTC", "ETH", "XMR", "DOGE"],
+      favorites: this.props.user.favorites && this.props.user.favorites.join(" ") || ["BTC", "ETH", "XMR", "DOGE"], //either a thing on the redux state or use the default settings
+      // if the favorites includes the fav on state use it if it doesn't grab the first from the list if it is a thing or  set it to the default fav. 
+      currentFavorite :   this.props.user.fav || "BTC",
       timeInterval : "months", 
       //   ...this.savedSettings(),
       setPage: this.setPage,
@@ -141,15 +146,36 @@ class AppProvider extends Component {
         currentFavorite: sym
       })
     );
+    // this.props.updateFav();
     
     this.setState({
       currentFavorite: sym,
       historical: null,
     },this.fetchHistorical);
   };
+  
+  reduxFavorites = (currentFav = false) => {
+    /**takes an optional paramater currentFav
+     * If currentFav is set to true then the updateFav function will be called
+     * If the currentFav is left at false  then updateFavorites will run. 
+     * This function serves the purpose of getting the token and id from local storage
+     * creating a body based off current fav and then running the appropriate function. 
+     */
+    const token = localStorage.getItem("access_token");
+    const id = localStorage.getItem("user_id");
+    if(currentFav === false){
+      const body = {favorites : this.state.favorites.join(" ")};
+      this.props.updateFavorites(body, token, id)
+    } else if (currentFav === true){
+      const body = {fav : this.state.currentFavorite}
+      this.props.updateFav(body, token, id);
+    }
+  }
 
   confirmFavorites = () => {
     let currentFavorite = this.state.favorites[0];
+    //^^ may want to change this. 
+    this.reduxFavorites()
     this.setState(
       {
         firstVisit: false,
