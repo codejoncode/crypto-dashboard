@@ -129,7 +129,7 @@ class AppProvider extends Component {
 
   fetchCoins = async () => {
     let coinList = (await cc.coinList()).Data;
-
+    console.log(coinList)
     this.setState({ coinList });
   };
 
@@ -272,7 +272,7 @@ class AppProvider extends Component {
   };
 
   render() {
-    console.log(AppContext);
+    console.log(this.state);
     return (
       <AppContext.Provider value={this.state}>
         {this.props.children}
