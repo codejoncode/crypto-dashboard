@@ -21,6 +21,7 @@ const actions = {
 };
 
 const mapState = state => {
+  console.log(state)
   return {
     user: state.user
   };
@@ -30,8 +31,7 @@ class AppProvider extends Component {
     super(props);
     this.state = {
       page: "dashboard",
-       favorites: (this.props.user.favorites &&
-         this.props.user.favorites.join(" ")) || ["BTC", "ETH", "XMR", "DOGE"], //either a thing on the redux state or use the default settings
+       favorites: ["BTC", "ETH", "XMR", "DOGE"], //either a thing on the redux state or use the default settings
       // if the favorites includes the fav on state use it if it doesn't grab the first from the list if it is a thing or  set it to the default fav.
       // favorites: ["BTC", "ETH", "XMR", "DOGE"],
       currentFavorite: this.props.user.fav || "BTC",
@@ -73,8 +73,23 @@ class AppProvider extends Component {
 
   firstTimer = () => {
     const firstVisit = localStorage.getItem("firstVisit");
+    let favorites = this.props.user.favorites; 
     if (firstVisit === "false") {
-      this.setState({ firstVisit: false });
+      //check that favorites is a thing and that favorites has some length to it if not dont' adjust the favorites. 
+      if(favorites && favorites.length){
+        favorites = favorites.join(" ")
+        console.log(`This is the favorites ${favorites}`)
+        if(favorites.includes(this.props.user.fav) === false){
+          /// if current user fav is not included in the list set it to the first item in the list. 
+          const fav = this.props.user.favorites[0]; 
+          this.setState({ firstVisit: false, favorites, fav});
+        } else {
+          // no need to set fav
+          this.setState({ firstVisit: false, favorites });
+        }
+      } else {
+        this.setState({firstVisit: false})
+      }
     } else {
       this.setState({ firstVisit: true });
     }
