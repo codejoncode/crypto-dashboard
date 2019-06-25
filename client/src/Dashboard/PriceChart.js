@@ -15,7 +15,7 @@ export default () => {
           return (
             <Title>
               <ChartSelect 
-              defaultValue = "months"
+              // defaultValue = "months"
               onChange = { e => changeChartSelect(e.target.value)}
               >
                 <option active = {"days" === timeInterval} value="days">Days</option>
