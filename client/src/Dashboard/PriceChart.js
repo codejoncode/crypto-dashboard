@@ -18,9 +18,9 @@ export default () => {
               // defaultValue = "months"
               onChange = { e => changeChartSelect(e.target.value)}
               >
-                <option  value="days">Days</option>
-                <option  value="weeks">Weeks</option>
-                <option  value="months">Months</option>
+                <option selected = {"days" === timeInterval} value="days">Days</option>
+                <option  selected = {"weeks" === timeInterval} value="weeks">Weeks</option>
+                <option selected = {"months" === timeInterval} value="months">Months</option>
               </ChartSelect>
               <ReactHighcharts config={highChartsConfig(historical)} />
             </Title>
