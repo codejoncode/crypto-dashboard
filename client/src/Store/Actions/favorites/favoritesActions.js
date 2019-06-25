@@ -10,7 +10,7 @@ import {
   UPDATE_FAV_SUCCESSFUL
 } from "../../Reducers/favorites/favoritesConsts";
 
-const backendUrl = "http://localhost:4001/";
+const backendUrl = "https://crypto-dashboard-jjh.herokuapp.com/";
 
 export const updateFavorites = (body, token, id) => {
   const favoritesEndPoint = `favorites/${id}`;

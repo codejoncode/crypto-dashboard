@@ -6,7 +6,7 @@ import {
   AUTHENTICATION_SUCCESSFUL
 } from "../../Reducers/Register-Login/authenticateConstants";
 
-const backendUrl = "http://localhost:4001/";
+const backendUrl = "https://crypto-dashboard-jjh.herokuapp.com/";
 
 export const registerOrLogin = (body, token) => {
   const userEndPoint = "users";
