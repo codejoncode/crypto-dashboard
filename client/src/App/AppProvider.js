@@ -223,16 +223,18 @@ class AppProvider extends Component {
   prices = async () => {
     let returnData = [];
     console.log(this.state.favorites)
-    for (let i = 0; i < this.state.favorites.length; i++) {
-      try {
-        /* add an option to allow a user to select the currency maybe from a drop down then modify this part here.  */
-        let priceData = await cc.priceFull(
-          this.state.favorites[i],
-          this.state.currencyType
-        );
-        returnData.push(priceData);
-      } catch (error) {
-        console.warn("Fetch price error: ", error);
+    if(this.state.favorites){
+      for (let i = 0; i < this.state.favorites.length; i++) {
+        try {
+          /* add an option to allow a user to select the currency maybe from a drop down then modify this part here.  */
+          let priceData = await cc.priceFull(
+            this.state.favorites[i],
+            this.state.currencyType
+          );
+          returnData.push(priceData);
+        } catch (error) {
+          console.warn("Fetch price error: ", error);
+        }
       }
     }
     return returnData;
