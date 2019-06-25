@@ -8,6 +8,7 @@ class LandingPage extends Component {
   render() {
     return (
       <div>
+        <p>Login Required</p>
         <button onClick={this.props.loginUser}>
           {/* <a href="https://crypto-dashboard.auth0.com/login?client=ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez">Login</a> */}
           Login

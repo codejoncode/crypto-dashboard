@@ -25,9 +25,9 @@ class NavBar extends Component {
             <Button name = "settings">
               <Link to = "/settings">Settings</Link>
             </Button>
-            <button>   
+            {/* <button>   
                 <a href="https://crypto-dashboard.auth0.com/login?client=ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez">Login</a>
-            </button>
+            </button> */}
         </Nav>)
 
     }
