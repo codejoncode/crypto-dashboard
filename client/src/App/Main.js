@@ -12,11 +12,13 @@ const Main = () => {
       <AppContext.Consumer>
         {({ auth, getProfile, loginUser,registerOrLogin }) => (
           <Switch>
-            <Route exact path="/" component={() => <LandingPage loginUser ={loginUser} />} /> 
+            <Route exact path="/" render={() => <LandingPage loginUser ={loginUser} />} /> 
             {/* auth.isAuthenticated() */}
             {/* <Route path="/settings" component={() => <Settings auth = {auth} registerOrLogin = {registerOrLogin}/>} /> */}
-             <Route path = "/settings" component = {auth.isAuthenticated() ? () => <Settings auth = {auth} registerOrLogin = {registerOrLogin}/> : <LandingPage loginUser = {loginUser} />} />
-            <Route path="/dashboard" component={auth.isAuthenticated() ? Dashboard : LandingPage} />
+             {/* <Route path = "/settings" component = {auth.isAuthenticated() ? () => <Settings auth = {auth} registerOrLogin = {registerOrLogin}/> : <LandingPage loginUser = {loginUser} />} /> */}
+            <Route path = "/settings" render={() => auth.isAuthenticated() ? (<Settings auth = {auth} registerOrLogin = {registerOrLogin}/>) : <Redirect to="/" />} />
+            {/* <Route path="/dashboard" component={auth.isAuthenticated() ? Dashboard : LandingPage} /> */}
+            <Route path="/dashboard" render={() => auth.isAuthenticated() ? (<Dashboard />) : <Redirect to = "/" />} />
             <Route path="/callback" component={() => <Callback auth = {auth}/>} />
           </Switch>
         )}

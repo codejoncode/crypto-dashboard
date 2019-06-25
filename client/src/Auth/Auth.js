@@ -1,14 +1,13 @@
 /* eslint no-restricted-globals: 0 */
 import auth0 from "auth0-js";
 import jwtDecode from "jwt-decode";
-import { withRouter } from "react-router";
 const LOGIN_SUCCESS_PAGE = "/settings";
 const LOGIN_FAILURE_PAGE = "/";
 
- class Auth {
-   constructor(history){
-     this.history = history; 
-   }
+class Auth {
+  constructor(history) {
+    this.history = history;
+  }
   auth0 = new auth0.WebAuth({
     domain: "crypto-dashboard.auth0.com",
     clientID: "ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez",
@@ -26,23 +25,23 @@ const LOGIN_FAILURE_PAGE = "/";
   handleAuthenticated = () => {
     console.log("handling authenticated");
     this.auth0.parseHash((err, authResults) => {
-      console.log(authResults)
-      console.log(err)
+      console.log(authResults);
+      console.log(err);
       if (authResults && authResults.accessToken && authResults.idToken) {
         //figure out if the user is still authenticated or if their token has expired.
-        console.log("authenticated successful")
+        console.log("authenticated successful");
         let expiresAt = JSON.stringify(
           authResults.expiresIn * 1000 + new Date().getTime()
         );
         localStorage.setItem("access_token", authResults.accessToken);
         localStorage.setItem("id_token", authResults.idToken);
         localStorage.setItem("expires_at", expiresAt);
-        location.hash = ""; // eslint  no restricted  needs comment on line one. 
+        location.hash = ""; // eslint  no restricted  needs comment on line one.
         // location.pathname = LOGIN_SUCCESS_PAGE;
         // this.props.history.push(LOGIN_SUCCESS_PAGE)
-        this.history.push(LOGIN_SUCCESS_PAGE)
+        this.history.push(LOGIN_SUCCESS_PAGE);
       } else if (err) {
-        console.log("authenticated failed")
+        console.log("authenticated failed");
         location.pathname = LOGIN_FAILURE_PAGE;
         console.log(err);
       }
@@ -72,4 +71,4 @@ const LOGIN_FAILURE_PAGE = "/";
   };
 }
 
-export default Auth
+export default Auth;
