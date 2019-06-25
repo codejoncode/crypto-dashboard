@@ -65,7 +65,7 @@ class AppProvider extends Component {
 
   componentDidMount = async () => {
     await this.firstTimer();
-    await this.savedSettings();
+    // await this.savedSettings();
     await this.fetchCoins();
     await this.fetchPrices();
     await this.fetchHistorical();
@@ -153,14 +153,14 @@ class AppProvider extends Component {
   };
 
   savedSettings = () => {
-    let cryptoDashboardData = JSON.parse(localStorage.getItem("cryptoDash"));
+    // let cryptoDashboardData = JSON.parse(localStorage.getItem("cryptoDash"));
 
-    if (!cryptoDashboardData) {
-      return { page: "settings", firstVisit: true };
-    }
-    let { favorites, currentFavorite } = cryptoDashboardData;
-    this.setState({ favorites, firstVisit: false, currentFavorite });
-    return { favorites, currentFavorite };
+    // if (!cryptoDashboardData) {
+    //   return { page: "settings", firstVisit: true };
+    // }
+    // let { favorites, currentFavorite } = cryptoDashboardData;
+    // this.setState({ favorites, firstVisit: false, currentFavorite });
+    // return { favorites, currentFavorite };
   };
 
   setCurrentFavorite = sym => {
