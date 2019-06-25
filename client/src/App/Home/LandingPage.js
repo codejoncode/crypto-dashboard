@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Button, Header, Icon, Segment } from 'semantic-ui-react'
+
+const square = { width: 175, height: 175}
+
 class LandingPage extends Component {
   authenticateUser = async () => {
     console.log(`Am I authenticated `);
@@ -7,13 +10,13 @@ class LandingPage extends Component {
   };
   render() {
     return (
-      <div>
+      <div style = {{magin: "auto 0"}}>
         {/* <p>Login Required</p>
         <button onClick={this.props.loginUser}> */}
           {/* <a href="https://crypto-dashboard.auth0.com/login?client=ZEvOn2qtAc5TyZmhttSQaqara1AzA4Ez">Login</a> */}
           {/* Login
         </button> */}
-        <div>
+        <div className = "login">
         {/* <Segment circular style={square}>
           <Header as='h2'>
             Sale!

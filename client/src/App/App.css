@@ -3,3 +3,13 @@ body {
     color: white; 
     font-family: 'Fira Sans', sans-serif;
 }
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.login:hover {
+    cursor: pointer; 
+}
