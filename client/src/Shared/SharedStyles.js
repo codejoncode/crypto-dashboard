@@ -38,3 +38,46 @@ export const CoinImage = styled.img`
   `}
 
 `;
+
+export const themeSwitcher = (theme) => {
+
+  const lightTheme = theme === 'light';
+
+  const color = lightTheme ? 'white' : '#061a44';
+  const color2 = lightTheme ? 'white' : '#010e2c';
+  const color3 = lightTheme ? '#09f010' : '#42ff3a';
+  const lightBlueBackground = `background-color: ${color}`;
+  const backgroundColor2 = `background-color: ${color2};`;
+  const greenBackgroundColor = `background-color: ${color3};`;
+
+  const fontColorGreen = `color: #03A9F4`;
+  const fontColorWhite = `color: white`;
+  const subtleBoxShadow = `box-shadow: 0px 0px 5px 1px ${lightTheme ? '#a9b6ff' : '#121d5b'}`;
+  const greenBoxShadow = `box-shadow: 0px 0px 4px 2px #5fff17`;
+  const redBoxShadow = `box-shadow: 0px 0px 2px 2px #e41111`;
+
+  const fontSizeBig = 'font-size: 2em';
+  const fontSize1 = 'font-size: 1.5em;';
+  const fontSize2 = 'font-size: 1.0em';
+  const fontSize3 = 'font-size: .75em';
+
+  const textAlignCenter = 'text-align: center;';
+  return {
+    color, 
+    color2,
+    color3,
+    lightBlueBackground,
+    backgroundColor2,
+    greenBackgroundColor,
+    fontColorGreen,
+    fontColorWhite,
+    subtleBoxShadow,
+    greenBoxShadow,
+    redBoxShadow,
+    fontSizeBig,
+    fontSize1,
+    fontSize2,
+    fontSize3,
+    textAlignCenter, 
+  }
+}

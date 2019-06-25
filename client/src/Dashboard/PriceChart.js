@@ -10,7 +10,7 @@ ReactHighcharts.Highcharts.setOptions(ChartsTheme);
 export default () => {
   return (
     <AppContext.Consumer>
-      {({ historical, firstVisit, changeChartSelect }) => {
+      {({ historical, firstVisit, changeChartSelect, timeInterval }) => {
         if (historical) {
           return (
             <Title>
@@ -18,9 +18,9 @@ export default () => {
               defaultValue = "months"
               onChange = { e => changeChartSelect(e.target.value)}
               >
-                <option value="days">Days</option>
-                <option value="weeks">Weeks</option>
-                <option value="months">Months</option>
+                <option active = {days === timeInterval} value="days">Days</option>
+                <option active = {days === timeInterval} value="weeks">Weeks</option>
+                <option active = {days === timeInterval} value="months">Months</option>
               </ChartSelect>
               <ReactHighcharts config={highChartsConfig(historical)} />
             </Title>
